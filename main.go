@@ -14,5 +14,6 @@ func main() {
 	common.Parse(&Info)
 	Plugins.Scan(Info)
 	t := time.Now().Sub(start)
+	time.Sleep(500)
 	fmt.Printf("[*] 扫描结束,耗时: %s", t)
 }

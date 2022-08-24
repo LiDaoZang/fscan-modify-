@@ -81,6 +81,7 @@ var (
 	HostFile      string
 	PortFile      string
 	PocPath       string
+	SearchPoc     string
 	Threads       int
 	URL           string
 	UrlFile       string

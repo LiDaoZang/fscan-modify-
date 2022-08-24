@@ -126,7 +126,7 @@ func Readfile(filename string) ([]string, error) {
 }
 
 func ParseInput(Info *HostInfo) {
-	if Info.Host == "" && HostFile == "" && URL == "" && UrlFile == "" {
+	if Info.Host == "" && HostFile == "" && URL == "" && UrlFile == "" && SearchPoc ==""{
 		fmt.Println("Host is none")
 		flag.Usage()
 		os.Exit(0)

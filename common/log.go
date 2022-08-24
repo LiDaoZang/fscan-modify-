@@ -35,7 +35,7 @@ func SaveLog() {
 			fmt.Println(*result)
 		}
 		if IsSave {
-			WriteFile(*result, Outputfile)
+			//WriteFile(*result, Outputfile)//这里把日志保存去掉了
 		}
 		LogWG.Done()
 	}

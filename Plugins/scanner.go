@@ -12,6 +12,11 @@ import (
 )
 
 func Scan(info common.HostInfo) {
+	if common.SearchPoc !=""{
+		var ch = make(chan struct{}, common.Threads)
+		var wg = sync.WaitGroup{}
+		AddScan("1000003", info, ch, &wg) //webtitle
+	}
 	fmt.Println("start infoscan")
 	Hosts, err := common.ParseIP(info.Host, common.HostFile, common.NoHosts)
 	if err != nil {

@@ -17,7 +17,12 @@ var Pocs embed.FS
 var once sync.Once
 var AllPocs []*lib.Poc
 
+
 func WebScan(info *common.HostInfo) {
+	if info.Host == "" && common.SearchPoc!="" {
+		initpoc();
+
+	}
 	once.Do(initpoc)
 	var pocinfo = common.Pocinfo
 	buf := strings.Split(info.Url, "/")
@@ -48,7 +53,7 @@ func Execute(PocInfo common.PocInfo) {
 	lib.CheckMultiPoc(req, pocs, common.PocNum)
 }
 
-func initpoc() {
+func  initpoc() {
 	if common.PocPath == "" {
 		entries, err := Pocs.ReadDir("pocs")
 		if err != nil {
@@ -59,7 +64,11 @@ func initpoc() {
 			path := one.Name()
 			if strings.HasSuffix(path, ".yaml") || strings.HasSuffix(path, ".yml") {
 				if poc, _ := lib.LoadPoc(path, Pocs); poc != nil {
+					if common.SearchPoc!="" && strings.Contains(poc.Name,common.SearchPoc){
+						fmt.Println(poc.Name)
+					}
 					AllPocs = append(AllPocs, poc)
+
 				}
 			}
 		}
@@ -73,6 +82,9 @@ func initpoc() {
 					if strings.HasSuffix(path, ".yaml") || strings.HasSuffix(path, ".yml") {
 						poc, _ := lib.LoadPocbyPath(path)
 						if poc != nil {
+							if common.SearchPoc!="" && strings.Contains(poc.Name,common.SearchPoc){
+								fmt.Println(poc.Name)
+							}
 							AllPocs = append(AllPocs, poc)
 						}
 					}

@@ -6,7 +6,6 @@ import (
 	"runtime/debug"
 	"time"
 )
-
 func init() {
 	go func() {
 		for {
@@ -15,6 +14,7 @@ func init() {
 			time.Sleep(10 * time.Second)
 		}
 	}()
+
 }
 
 func Banner() {
@@ -30,6 +30,7 @@ func Banner() {
 	print(`
 <-------------- 加入了很多地方的POC,目前POC数436 -------------->
 `)
+
 }
 
 func Flag(Info *HostInfo) {
@@ -77,5 +78,7 @@ func Flag(Info *HostInfo) {
 	flag.Int64Var(&WebTimeout, "wt", 5, "Set web timeout")
 	flag.IntVar(&PocNum, "num", 20, "poc rate")
 	flag.StringVar(&SC, "sc", "", "ms17 shellcode,as -sc add")
+	flag.StringVar(&SearchPoc, "SearchPoc", "", "Input PocKey Select Poc")
+
 	flag.Parse()
 }
