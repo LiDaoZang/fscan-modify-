@@ -126,7 +126,7 @@ func Readfile(filename string) ([]string, error) {
 }
 
 func ParseInput(Info *HostInfo) {
-	if Info.Host == "" && HostFile == "" && URL == "" && UrlFile == "" && SearchPoc ==""{
+	if Info.Host == "" && HostFile == "" && URL == "" && UrlFile == "" && SearchPoc =="" && WHost==""{
 		fmt.Println("Host is none")
 		flag.Usage()
 		os.Exit(0)
@@ -179,6 +179,9 @@ func ParseInput(Info *HostInfo) {
 }
 
 func ParseScantype(Info *HostInfo) {
+	if WHost !=""{
+		return
+	}
 	_, ok := PORTList[Scantype]
 	if !ok {
 		showmode()
@@ -242,5 +245,8 @@ func showmode() {
 	for name := range PORTList {
 		fmt.Println("   [" + name + "]")
 	}
-	os.Exit(0)
+	if WHost=="" {
+		os.Exit(0)
+
+	}
 }

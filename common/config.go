@@ -97,6 +97,13 @@ var (
 	Socks5Proxy   string
 	Hash          string
 	HostPort      []string
+	WHost		  string
+	WHosts		  []string
+	WebShellPath  string
+	WebShellPasswd	string
+	WebShellPaths	[]string
+	Wcommand		string
+
 )
 
 var (

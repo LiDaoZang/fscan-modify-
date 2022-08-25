@@ -79,6 +79,10 @@ func Flag(Info *HostInfo) {
 	flag.IntVar(&PocNum, "num", 20, "poc rate")
 	flag.StringVar(&SC, "sc", "", "ms17 shellcode,as -sc add")
 	flag.StringVar(&SearchPoc, "SearchPoc", "", "Input PocKey Select Poc")
+	flag.StringVar(&WHost,"WHost","","WebShell Host")
+	flag.StringVar(&WebShellPath,"WebShellPath","","WebShellPath,as: /1.php")
+	flag.StringVar(&WebShellPasswd,"WebShellPasswd","","WebShellPasswd,as: 123456")
+	flag.StringVar(&Wcommand,"Wcommand","","webshell order")
 
 	flag.Parse()
 }
